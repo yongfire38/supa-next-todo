@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import useTodosController from "../hooks/useTodosController";
+import TodoList from "@/components/ui/TodoList";
 
 const TodoContainer = () => {
   const {
@@ -12,7 +13,16 @@ const TodoContainer = () => {
     onSearchTodos,
   } = useTodosController();
 
-  return <div>TodoContainer</div>;
+  return (
+    <div>
+      <TodoList
+        sharedUserFullName="test User"
+        oweUserId="test"
+        loading={loading}
+        todoListData={todos}
+      />
+    </div>
+  );
 };
 
 export default TodoContainer;
