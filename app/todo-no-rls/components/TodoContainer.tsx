@@ -20,6 +20,11 @@ const TodoContainer = () => {
         oweUserId="test"
         loading={loading}
         todoListData={todos}
+        isReadOnly={false}
+        onUpdate={onUpdateTodos}
+        onCreate={onCreateEmptyTodos}
+        onDelete={onDeleteTodos}
+        onSearch={onSearchTodos}
       />
     </div>
   );
