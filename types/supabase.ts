@@ -9,6 +9,27 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      books: {
+        Row: {
+          author: string | null
+          description: string | null
+          id: number
+          title: string | null
+        }
+        Insert: {
+          author?: string | null
+          description?: string | null
+          id?: number
+          title?: string | null
+        }
+        Update: {
+          author?: string | null
+          description?: string | null
+          id?: number
+          title?: string | null
+        }
+        Relationships: []
+      }
       items: {
         Row: {
           embedding: string | null
@@ -51,11 +72,79 @@ export type Database = {
         }
         Relationships: []
       }
+      todos_with_rls: {
+        Row: {
+          content: string | null
+          created_at: string
+          deleted_at: string | null
+          id: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          content?: string | null
+          created_at?: string
+          deleted_at?: string | null
+          id?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          content?: string | null
+          created_at?: string
+          deleted_at?: string | null
+          id?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "todos_with_rls_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      vector_store: {
+        Row: {
+          content: string | null
+          embedding: string | null
+          id: string
+          metadata: Json | null
+        }
+        Insert: {
+          content?: string | null
+          embedding?: string | null
+          id?: string
+          metadata?: Json | null
+        }
+        Update: {
+          content?: string | null
+          embedding?: string | null
+          id?: string
+          metadata?: Json | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
+      akeys: {
+        Args: {
+          "": unknown
+        }
+        Returns: string[]
+      }
+      avals: {
+        Args: {
+          "": unknown
+        }
+        Returns: string[]
+      }
       binary_quantize:
         | {
             Args: {
@@ -69,6 +158,97 @@ export type Database = {
             }
             Returns: unknown
           }
+      cube:
+        | {
+            Args: {
+              "": number[]
+            }
+            Returns: unknown
+          }
+        | {
+            Args: {
+              "": number
+            }
+            Returns: unknown
+          }
+      cube_dim: {
+        Args: {
+          "": unknown
+        }
+        Returns: number
+      }
+      cube_in: {
+        Args: {
+          "": unknown
+        }
+        Returns: unknown
+      }
+      cube_is_point: {
+        Args: {
+          "": unknown
+        }
+        Returns: boolean
+      }
+      cube_out: {
+        Args: {
+          "": unknown
+        }
+        Returns: unknown
+      }
+      cube_recv: {
+        Args: {
+          "": unknown
+        }
+        Returns: unknown
+      }
+      cube_send: {
+        Args: {
+          "": unknown
+        }
+        Returns: string
+      }
+      cube_size: {
+        Args: {
+          "": unknown
+        }
+        Returns: number
+      }
+      each: {
+        Args: {
+          hs: unknown
+        }
+        Returns: Record<string, unknown>[]
+      }
+      ghstore_compress: {
+        Args: {
+          "": unknown
+        }
+        Returns: unknown
+      }
+      ghstore_decompress: {
+        Args: {
+          "": unknown
+        }
+        Returns: unknown
+      }
+      ghstore_in: {
+        Args: {
+          "": unknown
+        }
+        Returns: unknown
+      }
+      ghstore_options: {
+        Args: {
+          "": unknown
+        }
+        Returns: undefined
+      }
+      ghstore_out: {
+        Args: {
+          "": unknown
+        }
+        Returns: unknown
+      }
       halfvec_avg: {
         Args: {
           "": number[]
@@ -116,6 +296,97 @@ export type Database = {
           "": unknown
         }
         Returns: unknown
+      }
+      hstore:
+        | {
+            Args: {
+              "": string[]
+            }
+            Returns: unknown
+          }
+        | {
+            Args: {
+              "": Record<string, unknown>
+            }
+            Returns: unknown
+          }
+      hstore_hash: {
+        Args: {
+          "": unknown
+        }
+        Returns: number
+      }
+      hstore_in: {
+        Args: {
+          "": unknown
+        }
+        Returns: unknown
+      }
+      hstore_out: {
+        Args: {
+          "": unknown
+        }
+        Returns: unknown
+      }
+      hstore_recv: {
+        Args: {
+          "": unknown
+        }
+        Returns: unknown
+      }
+      hstore_send: {
+        Args: {
+          "": unknown
+        }
+        Returns: string
+      }
+      hstore_subscript_handler: {
+        Args: {
+          "": unknown
+        }
+        Returns: unknown
+      }
+      hstore_to_array: {
+        Args: {
+          "": unknown
+        }
+        Returns: string[]
+      }
+      hstore_to_json: {
+        Args: {
+          "": unknown
+        }
+        Returns: Json
+      }
+      hstore_to_json_loose: {
+        Args: {
+          "": unknown
+        }
+        Returns: Json
+      }
+      hstore_to_jsonb: {
+        Args: {
+          "": unknown
+        }
+        Returns: Json
+      }
+      hstore_to_jsonb_loose: {
+        Args: {
+          "": unknown
+        }
+        Returns: Json
+      }
+      hstore_to_matrix: {
+        Args: {
+          "": unknown
+        }
+        Returns: string[]
+      }
+      hstore_version_diag: {
+        Args: {
+          "": unknown
+        }
+        Returns: number
       }
       ivfflat_bit_support: {
         Args: {
@@ -167,6 +438,12 @@ export type Database = {
             }
             Returns: unknown
           }
+      skeys: {
+        Args: {
+          "": unknown
+        }
+        Returns: string[]
+      }
       sparsevec_out: {
         Args: {
           "": unknown
@@ -184,6 +461,12 @@ export type Database = {
           "": unknown[]
         }
         Returns: number
+      }
+      svals: {
+        Args: {
+          "": unknown
+        }
+        Returns: string[]
       }
       vector_avg: {
         Args: {
