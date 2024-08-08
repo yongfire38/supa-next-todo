@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { createSupabaseBrowserClient } from "@/lib/client/supabase";
@@ -10,13 +10,13 @@ const AuthUI = () => {
   const supabase = createSupabaseBrowserClient();
   const isMount = useHydrate();
 
-  const getUserInfo = async () => {
+  const getUserInfo = useCallback(async () => {
     const result = await supabase.auth.getUser();
     console.log(result.data.user);
     if (result?.data?.user) {
       setUser(result?.data?.user);
     }
-  };
+  }, [supabase]);
 
   const handleLogOut = async () => {
     supabase.auth.signOut();
@@ -25,7 +25,7 @@ const AuthUI = () => {
 
   useEffect(() => {
     getUserInfo();
-  }, []);
+  }, [getUserInfo]);
 
   if (!isMount) return null;
 
@@ -41,7 +41,7 @@ const AuthUI = () => {
       </>
       <div className="mx-auto max-w-[500px]">
         <Auth
-          redirectTo={process.env.NEXT_PUBLIC_AUTH_REDIRECT_TO}
+          redirectTo={process.env.NEXT_PUBLIC_AUTH_REDIRECT_TO_TEST}
           supabaseClient={supabase}
           appearance={{ theme: ThemeSupa }}
           onlyThirdPartyProviders
