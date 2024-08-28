@@ -1,13 +1,17 @@
 "use client";
 import React from "react";
 import TodoList from "@/components/ui/TodoList";
-import useTodosController from "@/app/(site)/hooks/useTodosController";
+import useTodosController from "@/app/share/[user_id]/hooks/useTodosController";
 
 interface TodoContainerProps {
+  sharedUserFullName?: string;
   oweUserId?: string;
 }
 
-const TodoContainer = ({ oweUserId }: TodoContainerProps) => {
+const TodoContainer = ({
+  sharedUserFullName,
+  oweUserId,
+}: TodoContainerProps) => {
   const {
     loading,
     todos,
@@ -20,10 +24,11 @@ const TodoContainer = ({ oweUserId }: TodoContainerProps) => {
   return (
     <div>
       <TodoList
+        sharedUserFullName={sharedUserFullName}
         oweUserId={oweUserId}
         loading={loading}
         todoListData={todos}
-        isReadOnly={false}
+        isReadOnly={true}
         onUpdate={onUpdateTodos}
         onCreate={onCreateEmptyTodos}
         onDelete={onDeleteTodos}

@@ -48,6 +48,161 @@ export type Database = {
         }
         Relationships: []
       }
+      let_tn_qa_info: {
+        Row: {
+          answer_cn: string | null
+          answer_de: string | null
+          answer_editr_use_yn: string | null
+          answer_file_id: string | null
+          answer_reg_dtm: string | null
+          answer_reg_id: string | null
+          answer_upd_dtm: string | null
+          answer_upd_id: string | null
+          area_no: string | null
+          atch_file_id: string | null
+          delete_dtm: string | null
+          delete_yn: string
+          deleter_id: string | null
+          deleter_ty: string | null
+          email_adres: string | null
+          email_answer_at: string
+          end_telno: string | null
+          env_info: string | null
+          frst_register_id: string | null
+          frst_register_pnttm: string | null
+          inqire_co: number
+          last_updusr_id: string | null
+          last_updusr_pnttm: string | null
+          middle_telno: string | null
+          nationality: string | null
+          open_artifact_id: number | null
+          open_artifact_message_id: number | null
+          qa_id: string
+          qa_lang_cd: string
+          qestn_cn: string | null
+          qestn_sj: string
+          qestn_st: string | null
+          qestn_st_dt: string | null
+          qna_process_sttus_code: string
+          writng_de: string
+          writng_password: string | null
+          wrter_nm: string | null
+        }
+        Insert: {
+          answer_cn?: string | null
+          answer_de?: string | null
+          answer_editr_use_yn?: string | null
+          answer_file_id?: string | null
+          answer_reg_dtm?: string | null
+          answer_reg_id?: string | null
+          answer_upd_dtm?: string | null
+          answer_upd_id?: string | null
+          area_no?: string | null
+          atch_file_id?: string | null
+          delete_dtm?: string | null
+          delete_yn: string
+          deleter_id?: string | null
+          deleter_ty?: string | null
+          email_adres?: string | null
+          email_answer_at: string
+          end_telno?: string | null
+          env_info?: string | null
+          frst_register_id?: string | null
+          frst_register_pnttm?: string | null
+          inqire_co: number
+          last_updusr_id?: string | null
+          last_updusr_pnttm?: string | null
+          middle_telno?: string | null
+          nationality?: string | null
+          open_artifact_id?: number | null
+          open_artifact_message_id?: number | null
+          qa_id: string
+          qa_lang_cd: string
+          qestn_cn?: string | null
+          qestn_sj: string
+          qestn_st?: string | null
+          qestn_st_dt?: string | null
+          qna_process_sttus_code: string
+          writng_de: string
+          writng_password?: string | null
+          wrter_nm?: string | null
+        }
+        Update: {
+          answer_cn?: string | null
+          answer_de?: string | null
+          answer_editr_use_yn?: string | null
+          answer_file_id?: string | null
+          answer_reg_dtm?: string | null
+          answer_reg_id?: string | null
+          answer_upd_dtm?: string | null
+          answer_upd_id?: string | null
+          area_no?: string | null
+          atch_file_id?: string | null
+          delete_dtm?: string | null
+          delete_yn?: string
+          deleter_id?: string | null
+          deleter_ty?: string | null
+          email_adres?: string | null
+          email_answer_at?: string
+          end_telno?: string | null
+          env_info?: string | null
+          frst_register_id?: string | null
+          frst_register_pnttm?: string | null
+          inqire_co?: number
+          last_updusr_id?: string | null
+          last_updusr_pnttm?: string | null
+          middle_telno?: string | null
+          nationality?: string | null
+          open_artifact_id?: number | null
+          open_artifact_message_id?: number | null
+          qa_id?: string
+          qa_lang_cd?: string
+          qestn_cn?: string | null
+          qestn_sj?: string
+          qestn_st?: string | null
+          qestn_st_dt?: string | null
+          qna_process_sttus_code?: string
+          writng_de?: string
+          writng_password?: string | null
+          wrter_nm?: string | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          full_name: string | null
+          id: string
+          updated_at: string | null
+          username: string | null
+          website: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          full_name?: string | null
+          id: string
+          updated_at?: string | null
+          username?: string | null
+          website?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          full_name?: string | null
+          id?: string
+          updated_at?: string | null
+          username?: string | null
+          website?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "profiles_id_fkey"
+            columns: ["id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       todos_no_rls: {
         Row: {
           content: string | null
